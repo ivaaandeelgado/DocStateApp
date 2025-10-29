@@ -19,6 +19,7 @@ namespace DocStateApp.UI
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
     }
 }
