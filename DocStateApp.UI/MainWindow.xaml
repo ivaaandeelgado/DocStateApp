@@ -154,7 +154,7 @@
 									 Height="30" Margin="0,10,0,0"/>
 
 							<TextBox Width="400" Height="30" Margin="10,10,10,0"
-									 Text="{Binding RutaArchivo}"/>
+									 Text="{Binding RutaDirectorio}"/>
 
 							<Button Content="Analizar Documentos" Width="150" Height="50"
 									Command="{Binding TextoCommand}"/>

@@ -21,16 +21,19 @@ public class MainViewModel : INotifyPropertyChanged
 
 
 
-    // Propiedades
-    private string _rutaArchivo;
-    public string RutaArchivo
+    // PROPIEDADES
+
+
+    //Ruta del directorio seleccionado
+    private string _rutaDirectorio;
+    public string RutaDirectorio
     {
-        get => _rutaArchivo;
+        get => _rutaDirectorio;
         set
         {
-            if (_rutaArchivo != value)
+            if (_rutaDirectorio != value)
             {
-                _rutaArchivo = value;
+                _rutaDirectorio = value;
                 OnPropertyChanged();
             }
         }
@@ -64,8 +67,7 @@ public class MainViewModel : INotifyPropertyChanged
     //Metodos de los comandos
     private void OnExecuteTextoCommand(object? parameter)
     {
-        Debug.WriteLine(RutaArchivo);
-        Texto = $"El archivo seleccionado es: {RutaArchivo}";
+        Texto = $"El archivo seleccionado es: {RutaDirectorio}";
     }
 
 
