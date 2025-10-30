@@ -148,10 +148,22 @@
 						BorderThickness="2"
 						CornerRadius="5"
 						Background="#FFF9F9F9">
-						<StackPanel Grid.Column="0" Margin="10">
-							<Button Content="Analizar Documentos" Width="150" Height="50" 
-									Command="{Binding TextoCommand}"/>
+						<StackPanel Margin="10" Orientation="Horizontal">
 							
+							<TextBlock Text="Introduce la ruta del directorio para organizar" 
+									 Height="30" Margin="0,10,0,0"/>
+
+							<TextBox Width="400" Height="30" Margin="10,10,10,0"
+									 Text="{Binding RutaArchivo}"/>
+
+							<Button Content="Analizar Documentos" Width="150" Height="50"
+									Command="{Binding TextoCommand}"/>
+
+
+							<TextBox Width="400" Height="30" Margin="10,10,10,0"
+									 Text="{Binding Texto}"/>
+
+
 						</StackPanel>
 					</Border>
 

@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DocStateApp.UI.ViewModels;
 
 namespace DocStateApp.UI
 {
