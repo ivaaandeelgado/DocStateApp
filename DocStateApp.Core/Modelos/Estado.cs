@@ -3,9 +3,9 @@
 public enum Estado
 {
 	
-	Para Hacer,
-	En Proceso,
+	ParaHacer,
+	EnProceso,
     Hecho,
-	En Revision
+	EnRevision
 
 }

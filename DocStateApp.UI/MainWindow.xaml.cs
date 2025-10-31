@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using DocStateApp.UI.Services;
+using DocStateApp.UI.ViewModels;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,7 +10,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using DocStateApp.UI.ViewModels;
 
 namespace DocStateApp.UI
 {
@@ -19,8 +20,9 @@ namespace DocStateApp.UI
     {
         public MainWindow()
         {
+            var dialogService = new DialogService();
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new MainViewModel(dialogService);
         }
     }
 }

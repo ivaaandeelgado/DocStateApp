@@ -1,9 +1,11 @@
-﻿using System;
+﻿using DocStateApp.Core.Interfaces;
+using DocStateApp.UI.Ayudas;
+using DocStateApp.UI.Services;
+using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using DocStateApp.UI.Ayudas;
-using System.Diagnostics;
 
 
 namespace DocStateApp.UI.ViewModels;
@@ -13,9 +15,13 @@ public class MainViewModel : INotifyPropertyChanged
 {
 
     // Constructor
-    public MainViewModel()
+    public MainViewModel(IDialogService dialogService)
     {
-        TextoCommand = new Ayudas.RelayCommand(OnExecuteTextoCommand);
+
+        _dialogService = dialogService;
+        DialogCommand = new RelayCommand(ExecuteDialogCommand);
+        TextoCommand = new RelayCommand(OnExecuteTextoCommand);
+
     }
 
 
@@ -23,7 +29,8 @@ public class MainViewModel : INotifyPropertyChanged
 
     // PROPIEDADES
 
-
+    // Servicio de dialogos
+    private readonly IDialogService _dialogService;
     //Ruta del directorio seleccionado
     private string _rutaDirectorio;
     public string RutaDirectorio
@@ -58,7 +65,7 @@ public class MainViewModel : INotifyPropertyChanged
     // Comandos
 
     public ICommand TextoCommand { get;}
-
+    public ICommand DialogCommand { get; }
 
 
 
@@ -70,6 +77,12 @@ public class MainViewModel : INotifyPropertyChanged
         Texto = $"El archivo seleccionado es: {RutaDirectorio}";
     }
 
+    private void ExecuteDialogCommand(object? parameter)
+    {
+        var path = _dialogService.OpenFolderDialog(RutaDirectorio);
+        if (!string.IsNullOrEmpty(path))
+            RutaDirectorio = path;
+    }
 
 
 
