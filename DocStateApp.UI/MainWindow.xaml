@@ -159,7 +159,7 @@
 									 Text="{Binding RutaDirectorio}"/>
 
 							<Button Content="Analizar Documentos" Width="150" Height="50"
-									Command="{Binding TextoCommand}"/>
+									Command="{Binding AnalizeCommand}"/>
 
 						</StackPanel>
 					</Border>

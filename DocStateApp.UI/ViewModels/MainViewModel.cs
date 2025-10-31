@@ -1,6 +1,7 @@
 ﻿using DocStateApp.Core.Interfaces;
 using DocStateApp.UI.Ayudas;
 using DocStateApp.UI.Services;
+using DocStateApp.Worker.Escaner;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -14,23 +15,25 @@ namespace DocStateApp.UI.ViewModels;
 public class MainViewModel : INotifyPropertyChanged
 {
 
-    // Constructor
+    //-------CONSTRUCTOR-------
     public MainViewModel(IDialogService dialogService)
     {
 
         _dialogService = dialogService;
         DialogCommand = new RelayCommand(ExecuteDialogCommand);
-        TextoCommand = new RelayCommand(OnExecuteTextoCommand);
+        AnalizeCommand = new RelayCommand(OnExecuteAnalizeCommand);
 
     }
 
 
 
 
-    // PROPIEDADES
+    //-------PROPIEDADES-------
 
-    // Servicio de dialogos
+    // Servicio de dialogo
     private readonly IDialogService _dialogService;
+
+
     //Ruta del directorio seleccionado
     private string _rutaDirectorio;
     public string RutaDirectorio
@@ -46,15 +49,17 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-    private string _texto;
-    public string Texto
+
+    //Lista de documentos
+    private string[] _documentos;
+    public string[] Documentos
     {
-        get => _texto;
+        get => _documentos;
         set
         {
-            if (_texto != value)
+            if (_documentos != value)
             {
-                _texto = value;
+                _documentos = value;
                 OnPropertyChanged();
             }
         }
@@ -62,20 +67,20 @@ public class MainViewModel : INotifyPropertyChanged
 
 
 
-    // Comandos
 
-    public ICommand TextoCommand { get;}
+
+    // -------COMANDOS-------
+
+
     public ICommand DialogCommand { get; }
+    public ICommand AnalizeCommand { get; }
 
 
 
 
 
-    //Metodos de los comandos
-    private void OnExecuteTextoCommand(object? parameter)
-    {
-        Texto = $"El archivo seleccionado es: {RutaDirectorio}";
-    }
+    //-------METODOS DE LOS COMANDOS-------
+
 
     private void ExecuteDialogCommand(object? parameter)
     {
@@ -84,12 +89,20 @@ public class MainViewModel : INotifyPropertyChanged
             RutaDirectorio = path;
     }
 
+    public void OnExecuteAnalizeCommand(object? parameter)
+    {
+
+        var scanner = new ScanDocuments();
+
+        Documentos = scanner.ScanDocumentsInDirectory(RutaDirectorio);
+
+    }   
 
 
 
 
 
-    // Implementacion de INotifyPropertyChanged
+    //-------IMPLEMENTACION DE INotifyPropertyChanged-------
 
     public event PropertyChangedEventHandler? PropertyChanged;
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)

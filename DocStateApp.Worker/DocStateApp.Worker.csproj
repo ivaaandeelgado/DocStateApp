@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Listador\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DocStateApp.Core\DocStateApp.Core.csproj" />
+  </ItemGroup>
+
 </Project>
