@@ -65,10 +65,6 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
-
-
-
-
     // -------COMANDOS-------
 
 
