@@ -2,6 +2,7 @@
 using DocStateApp.UI.Ayudas;
 using DocStateApp.UI.Services;
 using DocStateApp.Worker.Escaner;
+using DocStateApp.Worker.Reader;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -89,8 +90,10 @@ public class MainViewModel : INotifyPropertyChanged
     {
 
         var scanner = new ScanDocuments();
+        var reader = new Reader();
 
-        Documentos = scanner.ScanDocumentsInDirectory(RutaDirectorio);
+        //Documentos = scanner.ScanDocumentsInDirectory(RutaDirectorio);
+        Documentos = reader.ReadDocuments(RutaDirectorio);
 
     }   
 
