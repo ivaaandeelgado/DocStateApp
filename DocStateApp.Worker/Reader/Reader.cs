@@ -21,13 +21,13 @@ namespace DocStateApp.Worker.Reader
 
             if (string.IsNullOrWhiteSpace(directoryPath))
             {
-                throw new ArgumentException("El path del directorio no puede estar vacío.", nameof(directoryPath));
+                throw new ArgumentException("El path del directorio está vacío.", nameof(directoryPath));
             }
 
             if (!Directory.Exists(directoryPath))
             {
                 return content.ToArray();
-                throw new DirectoryNotFoundException($"El directorio especificado no existe: {directoryPath}");
+                throw new DirectoryNotFoundException($"El directorio no existe: {directoryPath}");
             }   
 
             foreach (var file in Directory.EnumerateFiles(directoryPath))
@@ -67,8 +67,7 @@ namespace DocStateApp.Worker.Reader
                 }
 
 
-                // Aquí puedes agregar la lógica para leer el contenido del archivo
-                // Por ejemplo, si es un archivo de texto, podrías usar File.ReadAllText(file)
+                
             }   
 
             return content.ToArray();
