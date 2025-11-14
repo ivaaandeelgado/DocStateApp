@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocStateApp.Core.Modelos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace DocStateApp.Core.Interfaces
 {
     public interface IReadDocs
     {
-        string[] ReadDocuments(string directoryPath);
+        List<Item> ReadDocuments(string directoryPath);
     }
 }

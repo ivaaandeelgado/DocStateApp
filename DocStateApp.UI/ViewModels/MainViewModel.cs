@@ -1,4 +1,5 @@
 ﻿using DocStateApp.Core.Interfaces;
+using DocStateApp.Core.Modelos;
 using DocStateApp.UI.Ayudas;
 using DocStateApp.UI.Services;
 using DocStateApp.Worker.Escaner;
@@ -52,8 +53,8 @@ public class MainViewModel : INotifyPropertyChanged
 
 
     //Lista de documentos
-    private string[] _documentos;
-    public string[] Documentos
+    private List<Item> _documentos;
+    public List<Item> Documentos
     {
         get => _documentos;
         set
