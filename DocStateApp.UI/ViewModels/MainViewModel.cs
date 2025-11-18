@@ -5,6 +5,7 @@ using DocStateApp.UI.Services;
 using DocStateApp.Worker.Escaner;
 using DocStateApp.Worker.Reader;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -67,6 +68,14 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
+    //Lista de docsumentos filtrados
+    public ObservableCollection<Item> ToDo { get;} = new();
+    public ObservableCollection<Item> InProgress { get;} = new();
+    public ObservableCollection<Item> Done { get;} = new();
+    public ObservableCollection<Item> Historial { get;} = new();
+
+
+
     // -------COMANDOS-------
 
 
@@ -87,7 +96,7 @@ public class MainViewModel : INotifyPropertyChanged
             RutaDirectorio = path;
     }
 
-    public void OnExecuteAnalizeCommand(object? parameter)
+    private void OnExecuteAnalizeCommand(object? parameter)
     {
 
         var scanner = new ScanDocuments();
@@ -95,10 +104,38 @@ public class MainViewModel : INotifyPropertyChanged
 
         //Documentos = scanner.ScanDocumentsInDirectory(RutaDirectorio);
         Documentos = reader.ReadDocuments(RutaDirectorio);
+        FiltrarDocumentosPorEstado();
 
-    }   
+    }
 
 
+    //-------METODOS AUXILIARES-------
+
+    private void FiltrarDocumentosPorEstado()
+    {
+        ToDo.Clear();
+        InProgress.Clear();
+        Done.Clear();
+        Historial.Clear();
+        foreach (var doc in Documentos)
+        {
+            switch (doc.estado)
+            {
+                case Estado.ToDo:
+                    ToDo.Add(doc);
+                    break;
+                case Estado.Doing:
+                    InProgress.Add(doc);
+                    break;
+                case Estado.Done:
+                    Done.Add(doc);
+                    break;
+                case Estado.Historial:
+                    Historial.Add(doc);
+                    break;
+            }
+        }
+    }
 
 
 

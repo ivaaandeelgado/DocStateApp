@@ -12,7 +12,53 @@
         WindowStyle="ToolWindow"
         ResizeMode="NoResize">
 
-	<DockPanel LastChildFill="True">
+    <Window.Resources>
+
+        <!-- Tarjeta reutilizable para Items -->
+        <DataTemplate x:Key="CardTemplate">
+            <Border Background="White"
+                Margin="0,0,0,10"
+                Padding="12"
+                CornerRadius="8"
+                BorderBrush="#DDD"
+                BorderThickness="1"
+                SnapsToDevicePixels="True">
+
+                <StackPanel>
+                    <!-- ID del Ticket -->
+                    <TextBlock Text="{Binding Id}"
+                           FontWeight="Bold"
+                           FontSize="14"
+                           Foreground="#333"/>
+
+                    <!-- Usuario -->
+                    <TextBlock Text="{Binding EmailUsuario}"
+                           Margin="0,2,0,0"
+                           FontSize="12"
+                           Foreground="#666"/>
+
+                    <!-- Descripción -->
+                    <TextBlock Text="{Binding Descripcion}"
+                           Margin="0,5,0,0"
+                           TextWrapping="Wrap"
+                           FontSize="12"/>
+
+                    <!-- Nombre del archivo -->
+                    <TextBlock Text="{Binding NombreArchivo}"
+                           Margin="0,5,0,0"
+                           FontStyle="Italic"
+                           FontSize="11"
+                           Foreground="#777"/>
+
+                </StackPanel>
+
+            </Border>
+        </DataTemplate>
+
+    </Window.Resources>
+
+
+    <DockPanel LastChildFill="True">
 
 		<StackPanel DockPanel.Dock="Left" Width="60" Background="#FF2D2D30">
 			<!-- Icono de ajustes en la parte inferior -->
@@ -56,17 +102,12 @@
 					Background="#FFF9F9F9">
 						<StackPanel Grid.Column="0" Margin="10">
 							<TextBlock Text="To Do" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
-							<ItemsControl ItemsSource="{Binding ToDoFiles}">
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<Border Background="White" Margin="0,0,0,10" Padding="10" CornerRadius="5"
-												BorderBrush="Gray" BorderThickness="1">
-											<TextBlock Text="{Binding Name}" />
-										</Border>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
-						</StackPanel>
+                            <ItemsControl ItemsSource="{Binding ToDo}">
+                                <ItemsControl.ItemTemplate>
+                                    <StaticResource ResourceKey="CardTemplate" />
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
 					</Border>
 
 					<!-- Columna In Progress -->
@@ -79,17 +120,12 @@
 						Background="#FFF9F9F9">
 						<StackPanel Grid.Column="1" Margin="10">
 							<TextBlock Text="In Progress" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
-							<ItemsControl ItemsSource="{Binding InProgressFiles}">
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<Border Background="Black" Margin="0,0,0,10" Padding="10" CornerRadius="5"
-												 BorderBrush="Gray" BorderThickness="1">
-											<TextBlock Text="{Binding Name}" />
-										</Border>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
-						</StackPanel>
+                            <ItemsControl ItemsSource="{Binding Doing}">
+                                <ItemsControl.ItemTemplate>
+                                    <StaticResource ResourceKey="CardTemplate" />
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
 					</Border>
 
 
@@ -104,17 +140,12 @@
 					Background="#FFF9F9F9">
 						<StackPanel Grid.Column="2" Margin="10">
 							<TextBlock Text="Review" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
-							<ItemsControl ItemsSource="{Binding ReviewFiles}">
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<Border Background="White" Margin="0,0,0,10" Padding="10" CornerRadius="5"
-												BorderBrush="Gray" BorderThickness="1">
-											<TextBlock Text="{Binding Name}" />
-										</Border>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
-						</StackPanel>
+                            <ItemsControl ItemsSource="{Binding Done}">
+                                <ItemsControl.ItemTemplate>
+                                    <StaticResource ResourceKey="CardTemplate" />
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
 					</Border>
 
 					<!-- Columna Done -->
@@ -126,18 +157,13 @@
 					CornerRadius="5"
 					Background="#FFF9F9F9">
 						<StackPanel Grid.Column="3" Margin="10">
-							<TextBlock Text="Done" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
-							<ItemsControl ItemsSource="{Binding DoneFiles}">
-								<ItemsControl.ItemTemplate>
-									<DataTemplate>
-										<Border Background="White" Margin="0,0,0,10" Padding="10" CornerRadius="5"
-												BorderBrush="Gray" BorderThickness="1">
-											<TextBlock Text="{Binding Name}" />
-										</Border>
-									</DataTemplate>
-								</ItemsControl.ItemTemplate>
-							</ItemsControl>
-						</StackPanel>
+							<TextBlock Text="Historial" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                            <ItemsControl ItemsSource="{Binding Historial}">
+                                <ItemsControl.ItemTemplate>
+                                    <StaticResource ResourceKey="CardTemplate" />
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
 					</Border>
 
 				</Grid>
